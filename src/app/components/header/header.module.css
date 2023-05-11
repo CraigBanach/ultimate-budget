@@ -1,0 +1,36 @@
+.headerContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logoSection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.logoText {
+    font-size: 2rem;
+    font-weight: bold;
+    white-space: nowrap;
+    margin: 1rem;
+}
+
+.menuSection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 1.5rem;
+    white-space: nowrap;
+}
+
+.active {
+    font-weight: bold;
+}
+
+.menuItem {
+    margin: 2rem;
+}
