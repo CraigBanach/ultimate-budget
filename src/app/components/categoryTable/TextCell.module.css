@@ -1,0 +1,11 @@
+.textCell {
+    border: solid var(--money-green);
+    border-width: 0.25px 0.25px 0.25px 0.25px;
+}
+
+.textInput {
+    font-size: .75rem;
+    padding: 0 .5rem;
+    width: 100%;
+    border: none;
+}

@@ -1,0 +1,12 @@
+.numberCell {
+    border: solid var(--money-green);
+    border-width: 0.25px 0.25px 0.25px 0.25px;
+}
+
+.numberInput {
+    font-size: .75rem;
+    text-align: right;
+    padding: 0 .5rem;
+    width: 100%;
+    border: none;
+}
