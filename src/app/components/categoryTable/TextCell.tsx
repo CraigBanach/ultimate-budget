@@ -7,7 +7,7 @@ interface Props {
 const TextCell = ({ value = "" }: Props) => {
   return (
     <td className={styles.textCell}>
-      <input className={styles.textInput} type="text" value={value} />
+      <input className={styles.textInput} type="text" value={value} readOnly />
     </td>
   );
 };
