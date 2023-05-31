@@ -67,16 +67,6 @@ const CategoryTable = ({ tableData: initialTableData }: Props): JSX.Element => {
                     />
                   );
                 })}
-                <NumberCell
-                  key="total"
-                  value={row.values.reduce(
-                    (partialSum, x) => partialSum + x,
-                    0
-                  )}
-                  rowIndex={rowIndex}
-                  columnId={13}
-                  updateData={() => {}}
-                />
               </tr>
             );
           }
