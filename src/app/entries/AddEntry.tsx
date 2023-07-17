@@ -38,6 +38,7 @@ const AddEntry = ({
           },
           description,
           amount: +amount,
+          date: new Date(),
         })
       ) {
         setDescription("");

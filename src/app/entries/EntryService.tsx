@@ -8,6 +8,7 @@ export interface Entry {
   account: Account;
   description: string;
   amount: number;
+  date: Date;
 }
 
 interface EntryRow {
@@ -16,6 +17,7 @@ interface EntryRow {
   amount: string;
   account_name: string;
   account_id: number;
+  date: Date;
 }
 
 const entryMapper = (entryRows: Array<EntryRow>): Array<Entry> =>
@@ -27,12 +29,13 @@ const entryMapper = (entryRows: Array<EntryRow>): Array<Entry> =>
     },
     description: row.description,
     amount: +row.amount,
+    date: row.date,
   }));
 
 export const getEntries = async (): Promise<Array<Entry>> => {
   const client = await db.connect();
   const rows = (
-    await client.sql<EntryRow>`SELECT e.id, e.description, e.amount, cr.name AS account_name, cr.id AS account_id FROM entries e INNER JOIN category_rows cr ON e.account_id = cr.id;`
+    await client.sql<EntryRow>`SELECT e.id, e.description, e.amount, e.date, cr.name AS account_name, cr.id AS account_id FROM entries e INNER JOIN category_rows cr ON e.account_id = cr.id;`
   ).rows;
   return entryMapper(rows);
 };

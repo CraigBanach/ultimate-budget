@@ -1,6 +1,6 @@
 import { getAccounts } from "./AccountService";
 import AddEntry from "./AddEntry";
-import { Entry, addEntry, getEntries } from "./EntryService";
+import { addEntry, getEntries } from "./EntryService";
 
 export interface CategoryDataRowRecord {
   id: string;

@@ -31,6 +31,13 @@ const Header = () => {
           >
             Entries
           </ActiveLink>
+          <ActiveLink
+            activeClassName={styles.active}
+            className={styles.menuItem}
+            href="/tracking"
+          >
+            Tracking
+          </ActiveLink>
         </div>
       </nav>
       <hr className={styles.horizontalLine} />
