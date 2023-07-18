@@ -1,18 +1,22 @@
-import CategoryTable from "../components/categoryTable/CategoryTable";
+"use client";
+
+import { useState } from "react";
 import YearSelect from "../components/yearSelect/YearSelect";
-import { getCategories } from "./CategoryService";
 import styles from "./page.module.css";
 
-const Categories = async () => {
+const Categories = () => {
+  const [year, setYear] = useState(2023);
+  console.log(year);
+
   return (
     <div className={styles.categoryContainer}>
-      <YearSelect />
-      {(await getCategories()).map((tableData) => {
+      <YearSelect year={year} setYear={setYear} />
+      {/* {(await getCategories()).map((tableData) => {
         return (
           <></>
           // <CategoryTable key={tableData.id} tableData={tableData} />
         );
-      })}
+      })} */}
     </div>
   );
 };

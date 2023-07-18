@@ -8,6 +8,7 @@ export interface CategoryDataRowRecord {
   category: string;
 }
 
+// TODO: Remove async
 const Entries = async () => {
   const accounts = await getAccounts();
   const entries = await getEntries();
