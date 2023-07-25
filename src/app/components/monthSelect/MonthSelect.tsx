@@ -22,7 +22,7 @@ var months = [
   "December",
 ];
 
-const YearSelect = ({ month = 1, setMonth }: Props) => {
+const YearSelect = ({ month, setMonth }: Props) => {
   return (
     <div className={styles.container}>
       <div

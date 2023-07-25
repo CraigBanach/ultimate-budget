@@ -3,6 +3,8 @@ CREATE TABLE entries (
     account_id int NOT NULL,
     description varchar NOT NULL,
     amount numeric(12, 2) NOT NULL,
-    date date DEFAULT CURRENT_DATE NOT NULL,
+    year int DEFAULT date_part('year', CURRENT_DATE) NOT NULL,
+    month int DEFAULT date_part('month', CURRENT_DATE) NOT NULL,
+    day int DEFAULT date_part('day', CURRENT_DATE) NOT NULL,
     CONSTRAINT fk_accounts FOREIGN KEY(account_id) REFERENCES category_rows(id)
 );

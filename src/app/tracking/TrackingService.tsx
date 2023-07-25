@@ -50,6 +50,8 @@ export const getTracking = async (
     FROM accounts a
     LEFT JOIN entries e
       ON a.id = e.account_id
+      AND e.year = ${year}
+      AND e.month = ${month}
     INNER JOIN categories c
       ON c.id = a.category_id
     LEFT JOIN budgets b

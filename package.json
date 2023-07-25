@@ -19,7 +19,7 @@
     "eslint-config-next": "13.4.1",
     "faker": "5.5.3",
     "namor": "1.1.2",
-    "next": "13.4.1",
+    "next": "latest",
     "react": "18.2.0",
     "react-contenteditable": "^3.3.7",
     "react-dom": "18.2.0",
@@ -27,6 +27,7 @@
     "react-table": "^7.8.0",
     "react-window": "^1.8.9",
     "styled-components": "^6.0.0-rc.1",
+    "swr": "^2.2.0",
     "typescript": "^5.0.4"
   },
   "packageManager": "yarn@3.5.1",

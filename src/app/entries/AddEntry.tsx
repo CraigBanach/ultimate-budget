@@ -31,6 +31,7 @@ const AddEntry = ({
 
   const addEntryClick = async () => {
     if (description && amount) {
+      const currentDate = new Date();
       if (
         await addEntry({
           account: {
@@ -38,7 +39,9 @@ const AddEntry = ({
           },
           description,
           amount: +amount,
-          date: new Date(),
+          year: currentDate.getFullYear(),
+          month: currentDate.getMonth() + 1,
+          day: currentDate.getDay(),
         })
       ) {
         setDescription("");
