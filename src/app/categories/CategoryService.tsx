@@ -53,68 +53,68 @@ const rowMapper = (rowRecord: CategoryDataRowRecord) => ({
   ],
 });
 
-// const getCategoryData = async (): Promise<Array<CategoryData>> => {
-//   const categoryData =
-//     await db.sql<CategoryDataRowRecord>`SELECT c.name AS category_name,
-//   cr.name as row_name,
-//   cr.jan,
-//   cr.feb,
-//   cr.mar,
-//   cr.apr,
-//   cr.may,
-//   cr.jun,
-//   cr.jul,
-//   cr.aug,
-//   cr.sep,
-//   cr.oct,
-//   cr.nov,
-//   cr.dec,
-//   cr.total
-//   FROM category_rows_view cr
-//   INNER JOIN categories c ON cr.category_id = c.id
-//   UNION
-//   SELECT c.name AS category_name,
-//   'Total' as row_name,
-//   SUM(cr.jan) AS jan,
-//   SUM(cr.feb) AS feb,
-//   SUM(cr.mar) AS mar,
-//   SUM(cr.apr) AS apr,
-//   SUM(cr.may) AS may,
-//   SUM(cr.jun) AS jun,
-//   SUM(cr.jul) AS jul,
-//   SUM(cr.aug) AS aug,
-//   SUM(cr.sep) AS sep,
-//   SUM(cr.oct) AS oct,
-//   SUM(cr.nov) AS nov,
-//   SUM(cr.dec) AS dec,
-//   SUM(cr.total) AS total
-//   FROM category_rows_view cr
-//   INNER JOIN categories c ON cr.category_id = c.id
-//   GROUP BY c.id;`;
+const getCategoryData = async (year: number): Promise<Array<CategoryData>> => {
+  const categoryData =
+    await db.sql<CategoryDataRowRecord>`SELECT c.name AS category_name,
+  cr.name as row_name,
+  cr.jan,
+  cr.feb,
+  cr.mar,
+  cr.apr,
+  cr.may,
+  cr.jun,
+  cr.jul,
+  cr.aug,
+  cr.sep,
+  cr.oct,
+  cr.nov,
+  cr.dec,
+  cr.total
+  FROM category_rows_view cr
+  INNER JOIN categories c ON cr.category_id = c.id
+  UNION
+  SELECT c.name AS category_name,
+  'Total' as row_name,
+  SUM(cr.jan) AS jan,
+  SUM(cr.feb) AS feb,
+  SUM(cr.mar) AS mar,
+  SUM(cr.apr) AS apr,
+  SUM(cr.may) AS may,
+  SUM(cr.jun) AS jun,
+  SUM(cr.jul) AS jul,
+  SUM(cr.aug) AS aug,
+  SUM(cr.sep) AS sep,
+  SUM(cr.oct) AS oct,
+  SUM(cr.nov) AS nov,
+  SUM(cr.dec) AS dec,
+  SUM(cr.total) AS total
+  FROM category_rows_view cr
+  INNER JOIN categories c ON cr.category_id = c.id
+  GROUP BY c.id;`;
 
-//   const incomeData = {
-//     tableCategory: "Income",
-//     rows: categoryData.rows
-//       .filter((cd) => cd.category_name === "Income")
-//       .map(rowMapper)
-//       .sort((r1) => (r1.name === "Total" ? 0 : -1)),
-//   };
+  const incomeData = {
+    tableCategory: "Income",
+    rows: categoryData.rows
+      .filter((cd) => cd.category_name === "Income")
+      .map(rowMapper)
+      .sort((r1) => (r1.name === "Total" ? 0 : -1)),
+  };
 
-//   const expenseData = {
-//     tableCategory: "Expenses",
-//     rows: categoryData.rows
-//       .filter((cd) => cd.category_name === "Expenses")
-//       .map(rowMapper)
-//       .sort((r1) => (r1.name === "Total" ? 0 : -1)),
-//   };
+  const expenseData = {
+    tableCategory: "Expenses",
+    rows: categoryData.rows
+      .filter((cd) => cd.category_name === "Expenses")
+      .map(rowMapper)
+      .sort((r1) => (r1.name === "Total" ? 0 : -1)),
+  };
 
-//   const savingData = {
-//     tableCategory: "Savings",
-//     rows: categoryData.rows
-//       .filter((cd) => cd.category_name === "Savings")
-//       .map(rowMapper)
-//       .sort((r1) => (r1.name === "Total" ? 0 : -1)),
-//   };
+  const savingData = {
+    tableCategory: "Savings",
+    rows: categoryData.rows
+      .filter((cd) => cd.category_name === "Savings")
+      .map(rowMapper)
+      .sort((r1) => (r1.name === "Total" ? 0 : -1)),
+  };
 
-//   return [incomeData, expenseData, savingData];
-// };
+  return [incomeData, expenseData, savingData];
+};

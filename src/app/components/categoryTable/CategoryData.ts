@@ -1,7 +1,8 @@
 export interface CategoryData {
-  tableCategory: string;
-  rows: Array<{
-    name: string;
-    values: Array<number>;
-  }>;
+  tableRows: Record<string, Array<Entry>>;
+}
+
+interface Entry {
+  month: number;
+  amount: number;
 }

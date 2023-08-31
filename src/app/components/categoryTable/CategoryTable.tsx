@@ -7,27 +7,52 @@ import { CategoryData } from "./CategoryData";
 import { useState } from "react";
 
 interface Props {
+  category: string;
   tableData: CategoryData;
 }
 
-const CategoryTable = ({ tableData: initialTableData }: Props): JSX.Element => {
+const CategoryTable = ({
+  tableData: initialTableData,
+  category,
+}: Props): JSX.Element => {
   const [tableData, setTableData] = useState(initialTableData);
 
-  const updateData = (rowIndex: number, columnId: number, value: any) => {
-    setTableData((old) => ({
-      ...old,
-      rows: old.rows.map((row, index) => {
-        if (index === rowIndex) {
-          const retVal = {
-            ...row,
-          };
-          retVal.values[columnId - 1] = value;
-          return retVal;
-        }
-        return row;
-      }),
-    }));
-  };
+  const rows = [];
+
+  for (const [account, accountEntries] of Object.entries(tableData.tableRows)) {
+    rows.push(
+      <tr key={account} className={styles.tableRow}>
+        <TextCell value={account} />
+        {accountEntries.map(({ month, amount }) => {
+          return (
+            <NumberCell
+              key={month + 1}
+              value={amount}
+              rowIndex={month + 1}
+              columnId={month + 2}
+              updateData={() => {}}
+            />
+          );
+        })}
+      </tr>
+    );
+  }
+
+  // const updateData = (rowIndex: number, columnId: number, value: any) => {
+  //   setTableData((old) => ({
+  //     ...old,
+  //     tableRows: old.tableRows.map((row, index) => {
+  //       if (index === rowIndex) {
+  //         const retVal = {
+  //           ...row,
+  //         };
+  //         retVal.values[columnId - 1] = value;
+  //         return retVal;
+  //       }
+  //       return row;
+  //     }),
+  //   }));
+  // };
 
   return (
     <table className={styles.categoryTable}>
@@ -36,7 +61,7 @@ const CategoryTable = ({ tableData: initialTableData }: Props): JSX.Element => {
       </thead>
       <tbody>
         <tr>
-          <th>{tableData.tableCategory}</th>
+          <th>{category}</th>
           <th>Jan</th>
           <th>Feb</th>
           <th>Mar</th>
@@ -51,26 +76,7 @@ const CategoryTable = ({ tableData: initialTableData }: Props): JSX.Element => {
           <th>Dec</th>
           <th>Total</th>
         </tr>
-        {tableData.rows.map(
-          (row: { name: string | undefined; values: any[] }, rowIndex) => {
-            return (
-              <tr key={row.name} className={styles.tableRow}>
-                <TextCell value={row.name} />
-                {row.values.map((cellValue, index) => {
-                  return (
-                    <NumberCell
-                      key={index + 1}
-                      value={cellValue}
-                      rowIndex={rowIndex}
-                      columnId={index + 1}
-                      updateData={updateData}
-                    />
-                  );
-                })}
-              </tr>
-            );
-          }
-        )}
+        {rows}
       </tbody>
     </table>
   );
